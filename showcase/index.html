@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLUM Playground | High Performance Unambiguous Markup</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>SOLUM<span>.</span></h1>
+            <nav>
+                <a href="https://github.com/Pomilon/SOLUM">GitHub</a>
+                <a href="#syntax">Syntax</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="disclaimer">
+        <div class="container">
+            <p>Note: This is a temporary showcase. A dedicated site with full documentation is coming soon.</p>
+        </div>
+    </div>
+
+    <main class="container">
+        <section class="hero">
+            <h2>The Unambiguous Markup Language</h2>
+            <p>Fast. Predictable. Built for precision.</p>
+        </section>
+
+        <section class="playground">
+            <div class="editor-pane">
+                <div class="pane-header">
+                    <span>INPUT (SOLUM)</span>
+                </div>
+                <textarea id="input" spellcheck="false">===META
+Title: Welcome to SOLUM
+Author: Pomilon
+===
+
+> SOLUM Playground
+!!High performance!!, ::unambiguous:: markup.
+
+. No "magic" rules
+. $$O(n)$$ time complexity
+. Intersecting styles: !!Bold ::Both!! Italic::
+
+$$$
+E = mc^2
+$$$
+
+[t]
+Feature || Benefit
+---
+Strict || Predictable
+Linear || Fast
+[t]
+
+{{javascript:
+console.log("Hello from SOLUM!");
+}}</textarea>
+            </div>
+
+            <div class="output-pane">
+                <div class="pane-header">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="preview">Preview</button>
+                        <button class="tab-btn" data-tab="html">HTML</button>
+                        <button class="tab-btn" data-tab="text">Text</button>
+                        <button class="tab-btn" data-tab="ast">AST (JSON)</button>
+                    </div>
+                </div>
+                <div id="preview" class="tab-content active"></div>
+                <pre id="html-output" class="tab-content"></pre>
+                <pre id="text-output" class="tab-content"></pre>
+                <pre id="ast-output" class="tab-content"></pre>
+            </div>
+        </section>
+
+        <section id="syntax" class="syntax-brief">
+            <h3>Quick Reference</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>Headers</h4>
+                    <code>> H1</code><br>
+                    <code>>> H2</code>
+                </div>
+                <div class="card">
+                    <h4>Lists</h4>
+                    <code>. Unordered</code><br>
+                    <code>1. Ordered</code>
+                </div>
+                <div class="card">
+                    <h4>Styles</h4>
+                    <code>!!Bold!!</code><br>
+                    <code>::Italic::</code>
+                </div>
+                <div class="card">
+                    <h4>Math</h4>
+                    <code>$$inline$$</code><br>
+                    <code>$$$ block $$$</code>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Pomilon. Built with SOLUM.</p>
+    </footer>
+
+    <script src="solum.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

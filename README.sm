@@ -1,0 +1,66 @@
+===META
+Title: SOLUM Language Specification
+Author: Pomilon
+Version: 1.0.0
+===
+
+> SOLUM Specification (written in SOLUM)
+
+SOLUM is a high-performance, unambiguous markup language designed for maximum predictability.
+
+>> Block Elements
+
+Block elements must start at the very beginning of a line. Crucially, most block markers must be followed by a space to be recognized.
+
+>>> 1. Headers
+. {> Header} $$ \rightarrow $$ Level 1
+. {>> Header} $$ \rightarrow $$ Level 2
+. {>>> Header} $$ \rightarrow $$ Level 3
+. {># Header} $$ \rightarrow $$ Auto-numbered Header
+
+>>> 2. Lists
+. {. Item} $$ \rightarrow $$ Unordered
+. {1. Item} $$ \rightarrow $$ Ordered
+. {a. Item} $$ \rightarrow $$ Alpha
+. Nesting: achieved by increasing dots (e.g., {.. Item} is Level 2)
+
+>>> 3. Quotes
+. Block: {[q]} content {[q]}
+. Line-based: {` Quote} (Level 1), {`` Quote} (Level 2)
+
+>>> 4. Tables
+. Enclosed in {[t]} markers.
+. Cells separated by {||}.
+. Use {---} for header separation.
+
+[t]
+Marker || Type
+---
+> || Header
+. || List
+[t]
+
+>>> 5. Specialized Blocks
+. Code: {{cpp: ... }}
+. Literal: === ... ===
+. Math Block: $$$ ... $$$
+
+>> Inline Elements
+
+!!Bold!!, ::Italic::, ==Underline==, %%Highlight%%, ~~Strike~~, {Inline Code}, and ''Inline Literal''.
+
+>>> Assets and Math
+. Links: {[@ url "label"]}
+. Images: {[! path "alt"]}
+. Inline Math: $$E=mc^2$$
+. Tasks: {[ ]} and {[x]}
+. Escaping: {\!!} renders as !!
+
+>> Logic Showcase
+
+SOLUM handles overlapping styles gracefully:
+!!Bold and ::Bold-Italic!! Italic::
+
+$$$
+\text{Performance} = O(n)
+$$$

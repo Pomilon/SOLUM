@@ -1,0 +1,29 @@
+build/
+bin/
+obj/
+dist/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+
+# Compiled objects
+*.o
+*.a
+*.so
+*.exe
+*.dll
+*.dylib
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
