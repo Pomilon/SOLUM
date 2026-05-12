@@ -46,7 +46,7 @@ SolumModule().then(module => {
 ```
 
 ### Showcase Playground
-A live, interactive playground is available in the `showcase/` directory. It allows you to test SOLUM in real-time and view the HTML and JSON AST outputs directly in your browser.
+A live, interactive playground is available in the `showcase/` directory or at [https://pomilon.github.io/SOLUM/](https://pomilon.github.io/SOLUM/). It allows you to test SOLUM in real-time and view the HTML and JSON AST outputs directly in your browser.
 
 ## Build Instructions
 
