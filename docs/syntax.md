@@ -71,6 +71,8 @@ Inline elements can be used anywhere in the document.
 | **Underline** | `==` | `==Underline==` | <u>Underline</u> |
 | **Highlight** | `%%` | `%%Highlight%%` | <mark>Highlight</mark> |
 | **Strike** | `~~` | `~~Strike~~` | ~~Strike~~ |
+| **Subscript** | `,,` | `,,H2O,,` | H₂O |
+| **Superscript** | `^^` | `E=MC^^2^^` | E=MC² |
 | **Inline Code** | `{}` | `{int x = 0;}` | `int x = 0;` |
 | **Inline Literal**| `''` | `''literal''` | Literal text |
 
@@ -87,6 +89,8 @@ To render a marker literally, use the backslash `\` escape character. The charac
 - `\!!` $\rightarrow$ `!!`
 - `\>` $\rightarrow$ `>`
 - `\#` $\rightarrow$ `#`
+- `\,,\,,` $\rightarrow$ `,,`
+- `\^^` $\rightarrow$ `^^`
 
 ## 3. Advanced Logic
 

@@ -131,6 +131,55 @@ TEST(SolumParser, MarkerCollisions) {
     EXPECT_EQ(html, "Block markers like {{cpp: }}, ===, and $$$ should be literal here.<br/>");
 }
 
+TEST(SolumParser, Subscript) {
+    Parser parser;
+    std::string input = "H,,2,,O";
+    auto doc = parser.parse(input);
+    std::string html = SolumRenderer::render(doc, DefaultConfig());
+    EXPECT_EQ(html, "H<sub>2</sub>O<br/>");
+}
+
+TEST(SolumParser, Superscript) {
+    Parser parser;
+    std::string input = "x^^2^^";
+    auto doc = parser.parse(input);
+    std::string html = SolumRenderer::render(doc, DefaultConfig());
+    EXPECT_EQ(html, "x<sup>2</sup><br/>");
+}
+
+TEST(SolumParser, SubscriptSuperscriptNested) {
+    Parser parser;
+    std::string input = ",,sub!!bold^^sup^^!!,,";
+    auto doc = parser.parse(input);
+    std::string html = SolumRenderer::render(doc, DefaultConfig());
+    EXPECT_EQ(html, "<sub>sub<strong>bold<sup>sup</sup></strong></sub><br/>");
+}
+
+TEST(SolumParser, SuperscriptSubscriptNested) {
+    Parser parser;
+    std::string input = "^^sup,,sub!!both!!,,^^";
+    auto doc = parser.parse(input);
+    std::string html = SolumRenderer::render(doc, DefaultConfig());
+    EXPECT_EQ(html, "<sup>sup<sub>sub<strong>both</strong></sub></sup><br/>");
+}
+
+TEST(SolumParser, SubscriptInPlainText) {
+    Parser parser;
+    std::string input = "H,,2,,O";
+    auto doc = parser.parse(input);
+    PlainTextRenderer renderer;
+    std::string text = renderer.render(doc, DefaultConfig());
+    EXPECT_EQ(text, "H,,2,,O\n");
+}
+
+TEST(SolumParser, SubscriptEscaped) {
+    Parser parser;
+    std::string input = "\\,,not subscript\\,,";
+    auto doc = parser.parse(input);
+    std::string html = SolumRenderer::render(doc, DefaultConfig());
+    EXPECT_EQ(html, ",,not subscript,,<br/>");
+}
+
 TEST(SolumParser, UnclosedMarkers) {
     Parser parser;
     std::string input = "!!Unclosed bold";

@@ -22,6 +22,8 @@ struct ItalicNode;
 struct UnderlineNode;
 struct HighlightNode;
 struct StrikeNode;
+struct SubscriptNode;
+struct SuperscriptNode;
 struct InlineCodeNode;
 struct MathInlineNode;
 struct MathBlockNode;
@@ -43,6 +45,8 @@ using Node = std::variant<
     UnderlineNode,
     HighlightNode,
     StrikeNode,
+    SubscriptNode,
+    SuperscriptNode,
     InlineCodeNode,
     MathInlineNode,
     MathBlockNode,
@@ -91,6 +95,14 @@ struct HighlightNode {
 };
 
 struct StrikeNode {
+    std::vector<Node> children;
+};
+
+struct SubscriptNode {
+    std::vector<Node> children;
+};
+
+struct SuperscriptNode {
     std::vector<Node> children;
 };
 

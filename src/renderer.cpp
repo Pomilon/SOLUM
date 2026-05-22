@@ -142,6 +142,12 @@ namespace {
         else if constexpr (std::is_same_v<T, StrikeNode>) {
             return "<s>" + htmlRenderNodeSequence(arg.children, config) + "</s>";
         }
+        else if constexpr (std::is_same_v<T, SubscriptNode>) {
+            return "<sub>" + htmlRenderNodeSequence(arg.children, config) + "</sub>";
+        }
+        else if constexpr (std::is_same_v<T, SuperscriptNode>) {
+            return "<sup>" + htmlRenderNodeSequence(arg.children, config) + "</sup>";
+        }
         else if constexpr (std::is_same_v<T, InlineCodeNode>) {
             return "<code>" + escapeHtml(arg.content) + "</code>";
         }
@@ -232,6 +238,12 @@ namespace {
         }
         else if constexpr (std::is_same_v<T, StrikeNode>) {
             return "~~" + textRenderNodeSequence(arg.children, config) + "~~";
+        }
+        else if constexpr (std::is_same_v<T, SubscriptNode>) {
+            return ",," + textRenderNodeSequence(arg.children, config) + ",,";
+        }
+        else if constexpr (std::is_same_v<T, SuperscriptNode>) {
+            return "^^" + textRenderNodeSequence(arg.children, config) + "^^";
         }
         else if constexpr (std::is_same_v<T, InlineCodeNode>) {
         return "`" + arg.content + "`";

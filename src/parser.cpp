@@ -13,6 +13,8 @@ static Node wrapWithMarker(const std::string& marker, const std::vector<Node>& n
     if (marker == "==") return UnderlineNode{nodes};
     if (marker == "%%") return HighlightNode{nodes};
     if (marker == "~~") return StrikeNode{nodes};
+    if (marker == ",,") return SubscriptNode{nodes};
+    if (marker == "^^") return SuperscriptNode{nodes};
     return TextNode{""}; // Should not happen
 }
 
@@ -165,6 +167,8 @@ std::vector<Node> Parser::parseInline(const std::string& text) {
         else if (handleFormat("==", "==", [](auto& n) { return UnderlineNode{n}; })) matched = true;
         else if (handleFormat("%%", "%%", [](auto& n) { return HighlightNode{n}; })) matched = true;
         else if (handleFormat("~~", "~~", [](auto& n) { return StrikeNode{n}; })) matched = true;
+        else if (handleFormat(",,", ",,", [](auto& n) { return SubscriptNode{n}; })) matched = true;
+        else if (handleFormat("^^", "^^", [](auto& n) { return SuperscriptNode{n}; })) matched = true;
         else if (text[i] == '{') {
             i++;
             std::string content;
@@ -516,6 +520,14 @@ static nlohmann::json serializeNode(const Node& node) {
             nlohmann::json children = nlohmann::json::array();
             for (const auto& child : arg.children) children.push_back(serializeNode(child));
             return {{"type", "Strike"}, {"children", children}};
+        } else if constexpr (std::is_same_v<T, SubscriptNode>) {
+            nlohmann::json children = nlohmann::json::array();
+            for (const auto& child : arg.children) children.push_back(serializeNode(child));
+            return {{"type", "Subscript"}, {"children", children}};
+        } else if constexpr (std::is_same_v<T, SuperscriptNode>) {
+            nlohmann::json children = nlohmann::json::array();
+            for (const auto& child : arg.children) children.push_back(serializeNode(child));
+            return {{"type", "Superscript"}, {"children", children}};
         } else if constexpr (std::is_same_v<T, InlineCodeNode>) return {{"type", "InlineCode"}, {"content", arg.content}};
         else if constexpr (std::is_same_v<T, MathInlineNode>) return {{"type", "MathInline"}, {"content", arg.content}};
         else if constexpr (std::is_same_v<T, MathBlockNode>) return {{"type", "MathBlock"}, {"content", arg.content}};

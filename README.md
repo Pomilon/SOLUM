@@ -62,8 +62,8 @@ Requires [Emscripten](https://emscripten.org/).
 ```bash
 emcc -O3 src/parser.cpp src/renderer.cpp src/wasm_wrapper.cpp \
      -I include -I third_party \
-     -s EXPORTED_FUNCTIONS='["_solum_render", "_solum_serialize"]' \
-     -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' \
+     -s EXPORTED_FUNCTIONS='["_solum_render", "_solum_serialize", "_solum_render_text", "_malloc", "_free"]' \
+     -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap", "stringToUTF8", "UTF8ToString"]' \
      -s MODULARIZE=1 -s EXPORT_NAME="SolumModule" \
      -o solum.js
 ```
